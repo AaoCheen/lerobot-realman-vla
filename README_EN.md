@@ -1,4 +1,4 @@
-# RealMan π0.5: Full Fine-Tuning and Real-Robot Grasping
+# RealMan π0.5: Full Fine-Tuning and Real-Robot Grasping (In Progress)
 
 [中文项目说明](README.md)
 
@@ -6,9 +6,9 @@ A RealMan VLA engineering project built on LeRobot and [Humble2Full/lerobot-real
 
 ## Real-robot demo (4× speed)
 
-[![π0.5 step 45,000 real-robot grasping, 4× playback](docs/assets/pi05_step45000_4x.gif)](docs/assets/pi05_step45000_4x.mp4)
+![π0.5 step 45,000 real-robot grasping, 4× playback](docs/assets/pi05_step45000_4x.gif)
 
-RealMan RM65, 45,000-step checkpoint. Phone-recorded footage, full clip at 4× speed, approximately 32 seconds, muted. [View the MP4](docs/assets/pi05_step45000_4x.mp4). Playback speed does not represent actual robot speed.
+RealMan RM65, 45,000-step checkpoint. Phone-recorded footage, full clip at 4× speed, approximately 32 seconds, muted. Playback speed does not represent actual robot speed.
 
 ## Data and training
 

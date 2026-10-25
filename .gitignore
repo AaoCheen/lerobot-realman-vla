@@ -57,3 +57,6 @@ _private/
 
 # Original phone recording; publish only the compressed demonstration assets
 /docs/IMG_0596.MOV
+
+# Local intermediate video; the README publishes the GIF only
+/docs/assets/pi05_step45000_4x.mp4
