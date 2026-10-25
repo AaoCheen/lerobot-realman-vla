@@ -12,7 +12,7 @@ RealMan RM65, 45,000-step checkpoint. Phone-recorded footage, full clip at 4× s
 
 ## Data and training
 
-- Existing demonstrations collected by a lab colleague: 326 episodes / 178,362 frames.
+- RealMan demonstration dataset: 326 episodes / 178,362 frames.
 - Five episodes quarantined for review, without deleting source data.
 - Training: 289 episodes / 158,355 frames; held-out validation: 32 episodes / 17,624 frames.
 - 144,194 valid starting points for complete 50-action chunks. Normalization statistics use training episodes only.
@@ -50,6 +50,6 @@ Data, weights, local environments, and machine-specific exports are not included
 
 ## Attribution
 
-This fork adds data preparation and statistics isolation, four-GPU full fine-tuning, pinned installation, checkpoint recovery/export, and experiment documentation. Hardware acquisition/conversion code is inherited from Humble2Full; model implementation is provided by Hugging Face LeRobot, based on Physical Intelligence's π0.5. Existing demonstrations and real-robot testing involve lab collaborators.
+This fork adds data preparation and statistics isolation, four-GPU full fine-tuning, pinned installation, checkpoint recovery/export, and experiment documentation. Hardware acquisition/conversion code is inherited from Humble2Full; model implementation is provided by Hugging Face LeRobot, based on Physical Intelligence's π0.5. Fine-tuning and real-robot validation use RealMan demonstration data.
 
 Upstream ACT results and multi-policy comparisons are not results of this experiment. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

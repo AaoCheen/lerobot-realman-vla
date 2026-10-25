@@ -32,7 +32,7 @@
 
 ## 数据规模与表示
 
-数据来自同学已采集的 RealMan 示范，本项目在其基础上进行数据检查与微调实验。
+采用 RealMan 机械臂示范数据，完成数据质量检查、训练/验证集划分与全参数微调。
 
 | 数据项 | 数量/说明 |
 |---|---|
@@ -145,6 +145,6 @@ python -m unittest discover -s tests -p 'test_pi05_preparation.py'
 
 本仓库基于 [Humble2Full/lerobot-realman-vla](https://github.com/Humble2Full/lerobot-realman-vla)，继承其 RealMan 采集、数据转换、硬件接口与多策略工程。模型和处理器使用 [Hugging Face LeRobot](https://github.com/huggingface/lerobot) 的π0.5实现，基座策略来自 Physical Intelligence 的π0.5工作。
 
-本分支新增四卡全参数训练入口、数据筛选/划分与训练集统计、固定依赖安装脚本、训练恢复/导出及实验笔记；已有示范数据由同学采集，真机测试由项目参与者协作完成。硬件采集平台与预训练模型分别归属原作者，不作为本分支独创成果。
+本分支新增四卡全参数训练入口、数据筛选/划分与训练集统计、固定依赖安装脚本、训练恢复/导出及实验笔记，基于 RealMan 示范数据开展微调与真机验证。硬件采集平台与预训练模型分别归属原作者，不作为本分支独创成果。
 
 上游原有的ACT成功率、多策略对比与演示不作为本项目结果。保留 [Apache-2.0许可证](LICENSE) 及 [第三方声明](THIRD_PARTY_NOTICES.md)。
