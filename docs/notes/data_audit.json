@@ -1,0 +1,581 @@
+{
+  "datasets": [
+    {
+      "dataset": "realman_all",
+      "robot": "realman",
+      "episodes": 95,
+      "frames": 46236,
+      "metadata_episodes": 95,
+      "fps": 30,
+      "state_dim": 10,
+      "action_dim": 7,
+      "tasks": [
+        {
+          "task_index": 0,
+          "__index_level_0__": "pick up the plug and place it in the box"
+        }
+      ],
+      "errors": [],
+      "video_files": 190,
+      "probe_errors": 0,
+      "episode_issue_counts": {},
+      "review_counts": {
+        "episode_state_stats_count_stale": 82,
+        "episode_state_stats_dimension_stale": 95,
+        "end_closed_below_0.5": 8
+      }
+    },
+    {
+      "dataset": "realman_merged",
+      "robot": "realman",
+      "episodes": 326,
+      "frames": 178362,
+      "metadata_episodes": 326,
+      "fps": 30,
+      "state_dim": 7,
+      "action_dim": 7,
+      "tasks": [
+        {
+          "task_index": 0,
+          "__index_level_0__": "pick up the plug and place it in the box"
+        }
+      ],
+      "errors": [],
+      "video_files": 652,
+      "probe_errors": 0,
+      "episode_issue_counts": {},
+      "review_counts": {
+        "end_closed_below_0.5": 5
+      }
+    },
+    {
+      "dataset": "realman_new",
+      "robot": "realman",
+      "episodes": 47,
+      "frames": 26372,
+      "metadata_episodes": 47,
+      "fps": 30,
+      "state_dim": 7,
+      "action_dim": 7,
+      "tasks": [
+        {
+          "task_index": 0,
+          "__index_level_0__": "pick up the plug and place it in the box"
+        }
+      ],
+      "errors": [],
+      "video_files": 94,
+      "probe_errors": 0,
+      "episode_issue_counts": {
+        "video_meta_span_mismatch": 1
+      },
+      "review_counts": {
+        "end_closed_below_0.5": 5
+      }
+    },
+    {
+      "dataset": "realman_new_after48_full",
+      "robot": "realman",
+      "episodes": 52,
+      "frames": 27251,
+      "metadata_episodes": 52,
+      "fps": 30,
+      "state_dim": 7,
+      "action_dim": 7,
+      "tasks": [
+        {
+          "task_index": 0,
+          "__index_level_0__": "pick up the plug and place it in the box"
+        }
+      ],
+      "errors": [],
+      "video_files": 104,
+      "probe_errors": 0,
+      "episode_issue_counts": {},
+      "review_counts": {
+        "end_closed_below_0.5": 3,
+        "never_close_below_0.5": 4,
+        "joint_range_under_1unit": 2
+      }
+    },
+    {
+      "dataset": "svla_so100_pickplace",
+      "robot": "so100",
+      "episodes": 50,
+      "frames": 19631,
+      "metadata_episodes": 50,
+      "fps": 30,
+      "state_dim": 6,
+      "action_dim": 6,
+      "tasks": [
+        {
+          "task_index": 0,
+          "__index_level_0__": "Pick up the cube and place it in the box."
+        }
+      ],
+      "errors": [],
+      "video_files": 2,
+      "probe_errors": 0,
+      "episode_issue_counts": {},
+      "review_counts": {}
+    }
+  ],
+  "raw_hdf5": [
+    {
+      "file": "data/raw_hdf5/pick_plug_0.hdf5",
+      "frames": 419,
+      "shapes": [
+        [
+          "action",
+          [
+            419,
+            7
+          ]
+        ],
+        [
+          "observations/images/camera_global",
+          [
+            419,
+            480,
+            640,
+            3
+          ]
+        ],
+        [
+          "observations/images/camera_left",
+          [
+            419,
+            480,
+            640,
+            3
+          ]
+        ],
+        [
+          "observations/qpos",
+          [
+            419,
+            7
+          ]
+        ],
+        [
+          "timestamps",
+          [
+            419
+          ]
+        ]
+      ],
+      "action_next_state_maxdiff": 0.0,
+      "actual_fps": 29.99920728487541,
+      "max_gap_seconds": 0.03434896469116211,
+      "nonmonotonic": 0,
+      "nonfinite": 0,
+      "attrs": {
+        "fps": "30",
+        "sim": "False"
+      }
+    },
+    {
+      "file": "data/raw_hdf5/task_pick_cube_0.hdf5",
+      "frames": 197,
+      "shapes": [
+        [
+          "action",
+          [
+            197,
+            7
+          ]
+        ],
+        [
+          "observations/ee_pose",
+          [
+            197,
+            6
+          ]
+        ],
+        [
+          "observations/images/camera_global",
+          [
+            197,
+            480,
+            640,
+            3
+          ]
+        ],
+        [
+          "observations/images/camera_left",
+          [
+            197,
+            480,
+            640,
+            3
+          ]
+        ],
+        [
+          "observations/qpos",
+          [
+            197,
+            7
+          ]
+        ],
+        [
+          "timestamps",
+          [
+            197
+          ]
+        ]
+      ],
+      "action_next_state_maxdiff": 0.0,
+      "actual_fps": 29.996699749808442,
+      "max_gap_seconds": 0.03448367118835449,
+      "nonmonotonic": 0,
+      "nonfinite": 0,
+      "attrs": {
+        "fps": "30",
+        "sim": "False"
+      }
+    },
+    {
+      "file": "data/raw_hdf5/task_pick_cube_1.hdf5",
+      "frames": 489,
+      "shapes": [
+        [
+          "action",
+          [
+            489,
+            7
+          ]
+        ],
+        [
+          "observations/ee_pose",
+          [
+            489,
+            6
+          ]
+        ],
+        [
+          "observations/images/camera_global",
+          [
+            489,
+            480,
+            640,
+            3
+          ]
+        ],
+        [
+          "observations/images/camera_left",
+          [
+            489,
+            480,
+            640,
+            3
+          ]
+        ],
+        [
+          "observations/qpos",
+          [
+            489,
+            7
+          ]
+        ],
+        [
+          "timestamps",
+          [
+            489
+          ]
+        ]
+      ],
+      "action_next_state_maxdiff": 0.0,
+      "actual_fps": 29.99907887269777,
+      "max_gap_seconds": 0.04367852210998535,
+      "nonmonotonic": 0,
+      "nonfinite": 0,
+      "attrs": {
+        "fps": "30",
+        "sim": "False"
+      }
+    },
+    {
+      "file": "data/raw_hdf5/task_pick_cube_2.hdf5",
+      "frames": 438,
+      "shapes": [
+        [
+          "action",
+          [
+            438,
+            7
+          ]
+        ],
+        [
+          "observations/ee_pose",
+          [
+            438,
+            6
+          ]
+        ],
+        [
+          "observations/images/camera_global",
+          [
+            438,
+            480,
+            640,
+            3
+          ]
+        ],
+        [
+          "observations/images/camera_left",
+          [
+            438,
+            480,
+            640,
+            3
+          ]
+        ],
+        [
+          "observations/qpos",
+          [
+            438,
+            7
+          ]
+        ],
+        [
+          "timestamps",
+          [
+            438
+          ]
+        ]
+      ],
+      "action_next_state_maxdiff": 0.0,
+      "actual_fps": 29.99938636568448,
+      "max_gap_seconds": 0.043689727783203125,
+      "nonmonotonic": 0,
+      "nonfinite": 0,
+      "attrs": {
+        "fps": "30",
+        "sim": "False"
+      }
+    },
+    {
+      "file": "data/raw_hdf5/task_pick_cube_3.hdf5",
+      "frames": 754,
+      "shapes": [
+        [
+          "action",
+          [
+            754,
+            7
+          ]
+        ],
+        [
+          "observations/ee_pose",
+          [
+            754,
+            6
+          ]
+        ],
+        [
+          "observations/images/camera_global",
+          [
+            754,
+            480,
+            640,
+            3
+          ]
+        ],
+        [
+          "observations/images/camera_left",
+          [
+            754,
+            480,
+            640,
+            3
+          ]
+        ],
+        [
+          "observations/qpos",
+          [
+            754,
+            7
+          ]
+        ],
+        [
+          "timestamps",
+          [
+            754
+          ]
+        ]
+      ],
+      "action_next_state_maxdiff": 0.0,
+      "actual_fps": 29.999242702922906,
+      "max_gap_seconds": 0.04776573181152344,
+      "nonmonotonic": 0,
+      "nonfinite": 0,
+      "attrs": {
+        "fps": "30",
+        "sim": "False"
+      }
+    }
+  ],
+  "exact_state_action_duplicate_groups": [
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 18,
+        "frames": 656
+      },
+      {
+        "dataset": "realman_new",
+        "episode": 18,
+        "frames": 656
+      }
+    ],
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 20,
+        "frames": 488
+      },
+      {
+        "dataset": "realman_new",
+        "episode": 20,
+        "frames": 488
+      }
+    ],
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 43,
+        "frames": 480
+      },
+      {
+        "dataset": "realman_new",
+        "episode": 43,
+        "frames": 480
+      }
+    ],
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 44,
+        "frames": 613
+      },
+      {
+        "dataset": "realman_new",
+        "episode": 44,
+        "frames": 613
+      }
+    ],
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 45,
+        "frames": 559
+      },
+      {
+        "dataset": "realman_new",
+        "episode": 45,
+        "frames": 559
+      }
+    ],
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 48,
+        "frames": 520
+      },
+      {
+        "dataset": "realman_new_after48_full",
+        "episode": 1,
+        "frames": 520
+      }
+    ],
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 60,
+        "frames": 411
+      },
+      {
+        "dataset": "realman_new_after48_full",
+        "episode": 14,
+        "frames": 411
+      }
+    ],
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 65,
+        "frames": 692
+      },
+      {
+        "dataset": "realman_new_after48_full",
+        "episode": 20,
+        "frames": 692
+      }
+    ],
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 67,
+        "frames": 530
+      },
+      {
+        "dataset": "realman_new_after48_full",
+        "episode": 22,
+        "frames": 530
+      }
+    ],
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 68,
+        "frames": 755
+      },
+      {
+        "dataset": "realman_new_after48_full",
+        "episode": 24,
+        "frames": 755
+      }
+    ],
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 74,
+        "frames": 455
+      },
+      {
+        "dataset": "realman_new_after48_full",
+        "episode": 31,
+        "frames": 455
+      }
+    ],
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 78,
+        "frames": 421
+      },
+      {
+        "dataset": "realman_new_after48_full",
+        "episode": 35,
+        "frames": 421
+      }
+    ],
+    [
+      {
+        "dataset": "realman_all",
+        "episode": 79,
+        "frames": 396
+      },
+      {
+        "dataset": "realman_new_after48_full",
+        "episode": 36,
+        "frames": 396
+      }
+    ]
+  ],
+  "limitations": [
+    "Video headers and metadata checked, not full video decode or task success.",
+    "Duplicate definition is identical complete state (first action_dim columns) + action arrays, not image identity.",
+    "Review thresholds are heuristics, not deletion decisions."
+  ]
+}

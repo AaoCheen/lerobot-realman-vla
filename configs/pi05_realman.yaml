@@ -1,0 +1,61 @@
+# π0.5 全参数微调：作为模板，由 prepare_pi05.py 填入绝对路径、训练集和步数。
+# 不直接传给旧的单卡命令；统一使用 bash scripts/train.sh pi05。
+dataset:
+  repo_id: local/realman_merged
+  root: data/datasets/realman_merged
+  video_backend: pyav
+  image_transforms:
+    enable: false
+policy:
+  type: pi05
+  pretrained_path: models/pi05_base
+  push_to_hub: false
+  device: cuda
+  dtype: bfloat16
+  n_obs_steps: 1
+  chunk_size: 50
+  n_action_steps: 10
+  paligemma_variant: gemma_2b
+  action_expert_variant: gemma_300m
+  image_resolution: [224, 224]
+  tokenizer_max_length: 200
+  num_inference_steps: 10
+  freeze_vision_encoder: false
+  train_expert_only: false
+  use_peft: false
+  gradient_checkpointing: true
+  compile_model: false
+  # 明确只用双相机与7维状态，不把 ee_pose 自动当作模型输入。
+  input_features:
+    observation.state: {type: STATE, shape: [7]}
+    observation.images.camera_global: {type: VISUAL, shape: [3, 480, 640]}
+    observation.images.camera_left: {type: VISUAL, shape: [3, 480, 640]}
+  output_features:
+    action: {type: ACTION, shape: [7]}
+  normalization_mapping: {VISUAL: IDENTITY, STATE: QUANTILES, ACTION: QUANTILES}
+# 显式优化器，避免 preset 和 YAML 字段两套来源。
+use_policy_training_preset: false
+optimizer:
+  type: adamw
+  lr: 1.0e-5
+  betas: [0.9, 0.95]
+  eps: 1.0e-8
+  weight_decay: 0.01
+  grad_clip_norm: 1.0
+scheduler:
+  type: cosine_decay_with_warmup
+  num_warmup_steps: 500
+  num_decay_steps: 20000
+  peak_lr: 1.0e-5
+  decay_lr: 1.0e-6
+batch_size: 2             # 每卡2，4卡全局batch=8；OOM时先改为1。
+steps: 20000             # 准备脚本按 epochs × train_frames / global_batch 重算。
+num_workers: 2           # 每进程2，合计8，避免4进程各开8个解码worker。
+seed: 42
+save_checkpoint: true
+save_freq: 5000
+log_freq: 20
+eval_freq: 0             # 没有仿真env，不伪装为真机验证；验证集另存清单。
+peft: null
+wandb:
+  enable: false

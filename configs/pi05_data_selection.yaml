@@ -1,0 +1,15 @@
+# 对 realman_merged 的原 episode_index 生效，不是 file_index！不修改原数据。
+seed: 42
+validation_fraction: 0.10
+training_epochs: 3
+# 人工确认不适合训练的轨迹放这里，后续可继续添加。
+exclude_episodes: []
+# 只是“末尾仍闭合”的待回看候选，不宣称它们全是失败示范。
+# 为第一次实验保守起见，暂时隔离；回看确认合格后可关闭此开关。
+quarantine_review_candidates: true
+review_candidates: [202, 207, 214, 255, 285]
+# 自动排除：NaN/Inf、维度错误、全零关节、夹爪越界、全程未闭合、明显静止。
+# 这些规则均写入 data_selection.json，不按旧报告编号删除文件。
+closed_threshold: 0.5
+minimum_frames: 60
+minimum_joint_range_deg: 1.0

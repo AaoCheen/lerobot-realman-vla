@@ -1,0 +1,11 @@
+# GitHub克隆慢时使用：bash scripts/install_pi05_env.sh（浅克隆后本地安装）
+# 单独训练环境，避免 setup.sh 无版本约束升级；不需要真实设备SDK。
+# Python 3.10/3.11。不要复用别人的 .venv，环境和训练输出分别检查可用空间。
+lerobot==0.4.3
+# PI05依赖带AdaRMSNorm的transformers，普通4.57.1不等价；固定官方适配分支提交。
+transformers @ git+https://github.com/huggingface/transformers.git@dcddb970176382c0fcf4521b0c0e6fc15894dfe0
+torch==2.7.1
+torchvision==0.22.1
+accelerate==1.10.1
+pyarrow>=17,<22
+PyYAML>=6,<7

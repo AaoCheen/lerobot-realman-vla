@@ -44,3 +44,13 @@ wandb/
 
 # Private (面试材料，不纳入开源)
 _private/
+
+# Local training plans, HF arrow caches and verification artifacts
+.train/
+
+# Local pretrained weights and tokenizers
+/models/
+
+# Machine-specific deployment bundles and local disk maintenance records
+/exports/
+/docs/notes/04_磁盘与Docker清理候选.md

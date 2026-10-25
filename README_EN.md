@@ -1,101 +1,49 @@
-# 🤖 LeRobot-RealMan-VLA
+# RealMan π0.5: Full Fine-Tuning and Real-Robot Grasping
 
-<div align="center">
+[中文项目说明](README.md)
 
-**End-to-End VLA Pipeline for RealMan RM65 Robot Arm based on [LeRobot](https://github.com/huggingface/lerobot)**
+A RealMan VLA engineering project built on LeRobot and [Humble2Full/lerobot-realman-vla](https://github.com/Humble2Full/lerobot-realman-vla), covering demonstration auditing, four-GPU full fine-tuning, checkpoint export, and deployment. The 45,000-step checkpoint has been tested for real-robot grasping; a demonstration video will be added. No quantitative success rate is reported yet.
 
-*Data Collection → Format Conversion → Multi-Policy Training → Real-Robot Inference*
+## Data and training
 
-[![LeRobot](https://img.shields.io/badge/Framework-LeRobot-blue)](https://github.com/huggingface/lerobot)
-[![Python](https://img.shields.io/badge/Python-3.10-green)](https://python.org)
-[![License](https://img.shields.io/badge/License-Apache%202.0-orange)](LICENSE)
+- Existing demonstrations collected by a lab colleague: 326 episodes / 178,362 frames.
+- Five episodes quarantined for review, without deleting source data.
+- Training: 289 episodes / 158,355 frames; held-out validation: 32 episodes / 17,624 frames.
+- 144,194 valid starting points for complete 50-action chunks. Normalization statistics use training episodes only.
+- π0.5 full fine-tuning: vision, language, and action parameters updated; no LoRA or frozen vision encoder.
+- Four RTX 5880 Ada 48GB GPUs, FSDP FULL_SHARD, BF16 mixed precision, FP32 master parameters, gradient checkpointing.
+- Per-device batch 2, global batch 8; AdamW, peak LR 1e-5, 500 warmup steps, cosine decay to 1e-6.
+- Budget: 54,075 optimizer steps, approximately three passes over valid chunk starts. The 45,000-step checkpoint is the demonstrated model.
+- Two current RGB images, task text, and 7D state; predict a 50×7 action chunk. Targets are next-frame measured joint positions and gripper state.
 
-[中文](README.md) | English
+The custom training loop currently records training loss and saves the validation split; it does not automatically evaluate validation loss or task success.
 
-</div>
+## Hardware
 
----
+| Device | Role |
+|---|---|
+| 8×RTX 5880 Ada 48GB server; four GPUs used | Full fine-tuning |
+| RTX 4090 workstation | Existing data preparation and earlier experiments |
+| RTX 4080 16GB workstation | On-site acquisition/control and deployment |
+| RealMan RM65, six joints and gripper | Single-arm grasping experiment |
+| Global and wrist RGB cameras | Two-view observations |
 
-## Overview
+The physical platform has three arms; this experiment does not claim three-arm coordination or box folding.
 
-This project implements a complete imitation learning pipeline for the **RealMan RM65 6-DOF robot arm with a custom Modbus gripper**, built on the HuggingFace LeRobot framework. It supports teleoperation data collection via HTC Vive Tracker and training/deployment of multiple state-of-the-art policies including **ACT, Diffusion Policy, VQ-BeT, SmolVLA, and Pi0**.
+## Reproduction and scope
 
-### Key Features
+See the [Chinese README](README.md) for environment setup, data/model locations, smoke training, full training, and checkpoint export. Key files:
 
-- 🎮 **Vive Teleoperation**: Low-latency teleoperation via OpenVR, with teaching mode fallback
-- 📷 **Dual Camera System**: RealSense top + wrist cameras for global and fine-grained observation
-- 🔧 **Async Modbus Gripper**: Non-blocking gripper control that doesn't affect control frequency
-- 🧠 **Multi-Policy Support**: One dataset, multiple policy comparisons
-- ⚡ **Optimized Inference**: EMA smoothing + deadzone filtering + temporal ensemble
+- [Pinned dependencies](requirements-train-pi05.txt)
+- [Training configuration](configs/pi05_realman.yaml)
+- [Data selection](configs/pi05_data_selection.yaml)
+- [FSDP entry point](scripts/train_pi05_fsdp.py)
+- [Data and flow-matching notes](docs/notes/06_数据与训练原理/README.md)
 
----
+Data, weights, local environments, and machine-specific exports are not included. Deployment must align camera keys/views, joint ordering, units, gripper direction, and normalization. The inherited inference script requires adaptation to this experiment's camera_global/camera_left inputs.
 
-## Hardware Requirements
+## Attribution
 
-| Component | Model | Description |
-|-----------|-------|-------------|
-| Robot Arm | RealMan RM65-B | 6-DOF, TCP/IP communication |
-| Gripper | FAE2M86C | Modbus RTU protocol |
-| Teleoperation | HTC Vive Tracker 3.0 | OpenVR/SteamVR |
-| Top Camera | Intel RealSense D435i | 640×480@30fps |
-| Wrist Camera | Intel RealSense D435i | 640×480@30fps |
-| Training GPU | NVIDIA RTX 4080 Laptop | 12GB VRAM |
+This fork adds data preparation and statistics isolation, four-GPU full fine-tuning, pinned installation, checkpoint recovery/export, and experiment documentation. Hardware acquisition/conversion code is inherited from Humble2Full; model implementation is provided by Hugging Face LeRobot, based on Physical Intelligence's π0.5. Existing demonstrations and real-robot testing involve lab collaborators.
 
----
-
-## Quick Start
-
-```bash
-# Clone and setup
-git clone https://github.com/Humble2Full/lerobot-realman-vla.git
-cd lerobot-realman-vla
-bash setup.sh
-
-# Collect data
-python scripts/collect_data.py --arm-ip <YOUR_ARM_IP> --save-dir data/raw --fps 30
-
-# Convert to LeRobot format
-python scripts/convert_to_lerobot.py \
-    --input-dir data/raw \
-    --output-dir data/lerobot \
-    --repo-id lerobot/pick_cube_30fps \
-    --fps 30 \
-    --task "pick up the cube and place it in the basket"
-
-# Train (ACT recommended for beginners)
-bash scripts/train.sh act
-
-# Inference
-python scripts/inference.py \
-    --model outputs/act_realman/checkpoints/100000/pretrained_model \
-    --arm-ip <YOUR_ARM_IP> \
-    --freq 30
-```
-
----
-
-## Documentation
-
-- [Pipeline Guide](docs/pipeline_guide.md) — Step-by-step instructions
-- [Technical Details](docs/technical_details.md) — Architecture and design decisions
-- [Troubleshooting](docs/troubleshooting.md) — Common issues and solutions
-- [Hardware Setup](hardware/README.md) — Hardware configuration guide
-
----
-
-## License
-
-Apache License 2.0. See [LICENSE](LICENSE) for details.
-
-## Acknowledgments
-
-- [**HuggingFace LeRobot**](https://github.com/huggingface/lerobot) (Apache-2.0) — Training framework and data format conversion based on LeRobot official source code
-- [**RealMan RM_API2**](https://github.com/RealManRobot/RM_API2) (Apache-2.0) — Robot arm communication SDK
-- [**OpenVR / triad_openvr**](https://github.com/TriadSemi/triad_openvr) — `hardware/vive_tracker.py` references its Tracker pose reading approach and was rewritten for RM65
-- All algorithm implementations (ACT, Diffusion Policy, VQ-BeT, SmolVLA, Pi0) come from LeRobot's built-in modules
-
-### Collaboration
-
-The initial Vive Tracker teleoperation code in `scripts/collect_data.py` was co-developed with a lab colleague. Subsequent refactoring (teaching mode, dual-camera support, data formatting) was done by the project author.
-
-> See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for full third-party attribution.
+Upstream ACT results and multi-policy comparisons are not results of this experiment. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

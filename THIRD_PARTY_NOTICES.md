@@ -2,6 +2,12 @@
 
 本项目包含或基于以下第三方开源项目及合作贡献。感谢所有原作者的贡献。
 
+## 本分支来源与修改
+
+本仓库由 [Humble2Full/lerobot-realman-vla](https://github.com/Humble2Full/lerobot-realman-vla) 派生，保留其 Apache-2.0 许可证及适用的归属声明。下文原有采集与硬件贡献说明描述上游工作，不代表本分支独立开发了这些组件。
+
+本分支重写中英文项目首页，修改 `scripts/train.sh`、`.gitignore`，新增π0.5四卡FSDP训练入口、数据准备与统计隔离、固定依赖安装、配置、测试和实验笔记。π0.5模型及处理器使用LeRobot实现，算法与预训练策略来源于Physical Intelligence；不声称重新实现或提出π0.5算法。已有示范由实验室同学采集，本分支基于这些数据开展微调和协作真机测试。
+
 ---
 
 ## HuggingFace LeRobot
