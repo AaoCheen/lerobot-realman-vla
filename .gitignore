@@ -54,3 +54,6 @@ _private/
 # Machine-specific deployment bundles and local disk maintenance records
 /exports/
 /docs/notes/04_磁盘与Docker清理候选.md
+
+# Original phone recording; publish only the compressed demonstration assets
+/docs/IMG_0596.MOV

@@ -2,7 +2,13 @@
 
 [中文项目说明](README.md)
 
-A RealMan VLA engineering project built on LeRobot and [Humble2Full/lerobot-realman-vla](https://github.com/Humble2Full/lerobot-realman-vla), covering demonstration auditing, four-GPU full fine-tuning, checkpoint export, and deployment. The 45,000-step checkpoint has been tested for real-robot grasping; a demonstration video will be added. No quantitative success rate is reported yet.
+A RealMan VLA engineering project built on LeRobot and [Humble2Full/lerobot-realman-vla](https://github.com/Humble2Full/lerobot-realman-vla), covering demonstration auditing, four-GPU full fine-tuning, checkpoint export, and deployment. The 45,000-step checkpoint has been tested for real-robot grasping. No quantitative success rate is reported yet.
+
+## Real-robot demo (4× speed)
+
+[![π0.5 step 45,000 real-robot grasping, 4× playback](docs/assets/pi05_step45000_4x.gif)](docs/assets/pi05_step45000_4x.mp4)
+
+RealMan RM65, 45,000-step checkpoint. Phone-recorded footage, full clip at 4× speed, approximately 32 seconds, muted. [View the MP4](docs/assets/pi05_step45000_4x.mp4). Playback speed does not represent actual robot speed.
 
 ## Data and training
 
